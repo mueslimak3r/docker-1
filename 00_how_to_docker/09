@@ -1,4 +1,4 @@
-sudo apt update -y
-sudo apt upgrade -y
-sudo apt install gcc -y
-sudo apt install git -y
+apt update -y
+apt upgrade -y
+apt install gcc -y
+apt install git -y
