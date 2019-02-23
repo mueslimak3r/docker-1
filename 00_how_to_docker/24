@@ -1,0 +1,2 @@
+#!/bin/bash
+docker service create --name orbital-command --network overmind --env RABBITMQ_DEFAULT_USER=calamber --env RABBITMQ_DEFAULT_PASS=calamber rabbitmq

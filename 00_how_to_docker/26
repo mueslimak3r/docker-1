@@ -1,0 +1,2 @@
+#!/bin/bash
+docker service create -d --env OC_USERNAME=calamber --env OC_PASSWD=calamber --network overmind --replicas=2 --name engineering-bay 42school/engineering-bay

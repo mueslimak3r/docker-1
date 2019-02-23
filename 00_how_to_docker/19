@@ -1,0 +1,10 @@
+docker-machine ssh Char
+#run the bottom two commands inside Char
+#cd /
+#mkdir home/pythontest
+echo -e 'from flask import Flask\napp=Flask(__name__)\n@app.route("/")\ndef hello():\n\treturn "<h1>Hello World</h1>" ' > myapp.py && chmod 777 myapp.py
+docker-machine scp myapp.py Char:/home/pythontest
+rm myapp.py
+docker run -dt -p 3000:3000 -v /home/pythontest:/root --name Abathur python:2-slim
+docker exec Abathur pip install flask
+docker exec -e FLASK_APP=/root/myapp.py Abathur flask run --host=0.0.0.0 --port=3000
