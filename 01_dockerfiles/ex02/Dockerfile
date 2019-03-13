@@ -1,3 +1,11 @@
-FROM ft-rails:on-build
-EXPOSE 3000
-CMD ["rails", "s", "-b", "0.0.0.0", "-p", "3000"]
+FROM ruby
+
+RUN apt-get update -y && apt-get upgrade -y
+RUN apt-get install -y nodejs
+RUN gem install rails
+
+ONBUILD COPY app/ /opt/app
+ONBUILD WORKDIR /opt/app/
+ONBUILD RUN bundle install && \
+    bundle exec rake db:migrate && \
+    bundle exec rake db:seed
